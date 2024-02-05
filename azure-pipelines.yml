@@ -1,0 +1,24 @@
+trigger:
+- develop
+
+pool:
+  vmImage: ubuntu-latest
+
+jobs:
+- job: Build
+  displayName: 'Build and Test'
+  steps:
+  - script: echo 'Building the project...'
+    displayName: 'Build'
+    
+  - script: echo 'Running tests...'
+    displayName: 'Run Tests'
+
+- job: Deploy
+  displayName: 'Deploy to AKS'
+  dependsOn: Build
+  steps:
+  - script: echo 'Deploying to AKS...'
+    displayName: 'Deploy'
+
+  # Add more deployment steps if needed
